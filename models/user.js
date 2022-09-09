@@ -41,6 +41,7 @@ UserSchema.methods.toJSON = function(){
     return user;
 };
 
+module.exports = model( 'User', UserSchema );
+// ------------------------------------------- NOTA: 
 // Exportamos el shema como model, significa que ya esta en formato tabla
 // como lo vemos en cualquier base de datos digamos
-module.exports = model( 'User', UserSchema );
