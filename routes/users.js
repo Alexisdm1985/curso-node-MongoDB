@@ -2,9 +2,17 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-// VALIDACIONES
-const { validateFields } = require('../middlewares/validate-fields');
-const { isValidRole, emailExist, userIdExist } = require('../helpers/db-validators');
+const {
+    isAdminRole,
+    validateFields,
+    validateJWT
+} = require('../middlewares');
+
+const { 
+    isValidRole, 
+    emailExist, 
+    userIdExist
+} = require('../helpers/db-validators');
 
 const {
     usersGet,
@@ -60,9 +68,14 @@ router.patch('/', usersPatch);
 
 // DELETE
 router.delete('/:id', [
+    validateJWT,
+    // isAdminRole,
     check('id', 'No es un Id valido').isMongoId(),
     check('id').custom(userIdExist),
     validateFields
 ], usersDelete);
+// -------------------------------------------------- NOTA:
+// Es importante el orden de las validaciones por eso el jwt esta primero
+// ---------------------------------------------------------------------------
 
 module.exports = router;

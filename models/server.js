@@ -11,6 +11,7 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
         this.usersPath = '/api/users'; // Asi cualquier persona sabe los path disponibles
+        this.authPath = '/api/auth';
 
         // Concectar a base de datos
         this.conectarDB();
@@ -42,7 +43,10 @@ class Server {
 
     routes() {
 
-        // es como pegar RUTA PRINCIPAL + TODAS LAS DEMAS RUTAS HIJAS
+        // AUTH
+        this.app.use(this.authPath, require('../routes/auth'))
+        
+        // USERS
         this.app.use(this.usersPath, require('../routes/users'))
     };
 

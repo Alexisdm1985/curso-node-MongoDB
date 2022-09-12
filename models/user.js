@@ -37,11 +37,11 @@ const UserSchema = Schema({
 
 // Retorno el usuario sin la pass ni __v 
 UserSchema.methods.toJSON = function(){
-    const {__v, password, ...user} = this.toObject();
+    const {__v, password, _id,...user} = this.toObject();
     return user;
 };
 
 module.exports = model( 'User', UserSchema );
 // ------------------------------------------- NOTA: 
 // Exportamos el shema como model, significa que ya esta en formato tabla
-// como lo vemos en cualquier base de datos digamos
+// como lo vemos en cualquier base de datos
