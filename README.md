@@ -1,4 +1,4 @@
-### v1.2.0
+### v1.2.2
 ## GOOGLE SIGN IN
 
 1. Ejecutar ```npm install``` para construir los modulos de Node
