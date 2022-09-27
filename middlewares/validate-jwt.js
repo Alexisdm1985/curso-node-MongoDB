@@ -33,7 +33,7 @@ const validateJWT = async(req, res = response, next) => {
             });
         };
 
-        // Modificamos el request para usar los datos en el controlador
+        // Modificamos el request para usar los datos en controladores
         req.user = user;
 
         next();

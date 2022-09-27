@@ -91,13 +91,23 @@ const login = async (req = request, res = response) => {
         // -------------------------------------------------------------------------
 
         // Verificar pass
-        const validPassword = bcryptjs.compareSync(password, user.password);
-        if (!validPassword) {
-            return res.status(400).json({
-                msg: 'User / password no son correctos -- password: incorrect'
-            });
+        /**
+         * 
+         * ESTO ES EN MODO DESARROLLADOR
+         * pass qoni y alecito es :P 
+         * 
+         */
+        if (user.password !== ':P') {
+            
+            const validPassword =  bcryptjs.compareSync(password, user.password);
+            if (!validPassword) {
+                return res.status(400).json({
+                    msg: 'User / password no son correctos -- password: incorrect'
+                });
+            };
+            
         };
-
+        
         // Generar el JWT
         const token = await generateJWT(user.id);
 

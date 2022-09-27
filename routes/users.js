@@ -2,18 +2,21 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
+// Middlewares
 const {
     isAdminRole,
     validateFields,
     validateJWT
 } = require('../middlewares');
 
+// Validacion contra DB
 const { 
     isValidRole, 
     emailExist, 
     userIdExist
 } = require('../helpers/db-validators');
 
+// Controllers
 const {
     usersGet,
     usersDelete,
@@ -21,7 +24,7 @@ const {
     usersPut,
     userPost
 } = require('../controllers/usersController');
-
+// ----------------------------------------------------------------------------------------------------------
 
 // Esto reemplaza al app.get()
 const router = Router();

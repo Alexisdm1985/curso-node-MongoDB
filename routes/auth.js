@@ -1,8 +1,12 @@
+//  TERCEROS
 const { Router } = require('express');
 const { check } = require('express-validator');
-
+// CONTROLLERS
 const { login, googleSignIn } = require('../controllers/authController');
+// MIDDLEWARES
 const { validateFields } = require('../middlewares/validate-fields');
+// -----------------------------------------------------------------------------------------------
+
 
 // Instanciar Router()
 const router = Router();
@@ -15,6 +19,7 @@ router.post('/login', [
     validateFields
 ], login);
 
+// GOOGLE SIGN-IN
 router.post('/google', [
     check('id_token', 'ID Token de Google es necesario').not().isEmpty(),
     validateFields
